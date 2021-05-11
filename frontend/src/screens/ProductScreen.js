@@ -1,17 +1,31 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Row, Col, Card, Button, Image,ListGroup} from 'react-bootstrap'
 import { Link} from 'react-router-dom'
+import { useDispatch,useSelector} from 'react-redux'
 import Rating from '../components/Rating'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 import products from '../products'
 import { withRouter } from "react-router";
+import {listProductDetails} from '../actions/productActions'
 
 const ProductScreen = ({match}) => {
-    const product=products.find(p=>p._id==match.params.id)
+    const dispatch=useDispatch()
+
+    const productDetailList=useSelector(state=>state.productDetailList)
+    const {error,loading,product}=productDetailList
+
+    useEffect(()=>{
+        dispatch(listProductDetails(match.params.id))
+     },[dispatch,match]) 
+
+    // const product=products.find(p=>p._id==match.params.id)
     return (
         <>
             <Link className='btn btn-light my-3' to='/'>
                 Go Back
         </Link>
+        {loading?<Loader/>:error?<Message variant='danger'>{error}</Message>:
         <Row>
             <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid/>
@@ -67,6 +81,7 @@ const ProductScreen = ({match}) => {
                 </Card>
             </Col>
         </Row>
+}
         </>
     )
 }
