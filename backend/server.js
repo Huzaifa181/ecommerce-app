@@ -7,6 +7,8 @@ const {products}=require('./data/products')
 
 // Product Routes
 const productRoutes=require('./routes/productRoutes')
+// User Routes
+const userRoutes=require('./routes/userRoutes')
 
 dotenv.config()
 
@@ -14,11 +16,15 @@ connectDb()
 
 const app=express()
  
+app.use(express.json())
+
 app.get('/',(req,res)=>{
     res.send("App is running...")
 })
 
 app.use('/api/products',productRoutes)
+
+app.use('/api/users',userRoutes)
 
 app.use(error.notFound)
 
