@@ -9,7 +9,7 @@ const Footer = () => {
                        Copyright &copy;
                    </Col>
                </Row>
-            </Container> 
+            </Container>
         </footer>
     )
 }

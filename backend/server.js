@@ -9,6 +9,8 @@ const {products}=require('./data/products')
 const productRoutes=require('./routes/productRoutes')
 // User Routes
 const userRoutes=require('./routes/userRoutes')
+// Order Routes
+const orderRoutes=require('./routes/orderRoutes')
 
 dotenv.config()
 
@@ -25,6 +27,8 @@ app.get('/',(req,res)=>{
 app.use('/api/products',productRoutes)
 
 app.use('/api/users',userRoutes)
+
+app.use('/api/orders',orderRoutes)
 
 app.use(error.notFound)
 

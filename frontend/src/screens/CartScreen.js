@@ -89,7 +89,6 @@ const CartScreen = ({match, location, history}) => {
                                 Proceed To Checkout
                             </Button>
                         </ListGroup.Item>
-
                     </ListGroup>
                 </Card>
             </Col>
